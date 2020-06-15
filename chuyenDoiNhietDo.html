@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chuyen doi nhiet do</title>
+</head>
+<body>
+<h3>Temperature Converter</h3>
+<p>type a value in the Fahrenheit field to convert the value</p>
+<p>Fahrenheit <input type="number" id="inputTempF" placeholder="enter F temp" oninput="converAndShow()"> </p>
+<p>Celcius: <span id="result"></span></p>
+<script>
+    function converAndShow() {
+        let inputF = document.getElementById('inputTempF').value;
+        let outputC = (inputF - 32) / 1.8;
+        document.getElementById('result').innerHTML = outputC
+    }
+
+</script>
+</body>
+</html>
