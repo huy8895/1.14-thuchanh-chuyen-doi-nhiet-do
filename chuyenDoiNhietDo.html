@@ -6,14 +6,56 @@
 </head>
 <body>
 <h3>Temperature Converter</h3>
-<p>type a value in the Fahrenheit field to convert the value</p>
-<p>Fahrenheit <input type="number" id="inputTempF" placeholder="enter F temp" oninput="converAndShow()"> </p>
-<p>Celcius: <span id="result"></span></p>
+<p>type a value in the Fahrenheit field to convert the value <br><br>
+    <select id="selectTemp" onchange="tempChanged()" style="width: 100px">
+        <option value="F">F ---> C</option>
+        <option value="C">C ---> F</option>
+    </select>
+
+    <fieldset style="width:350px">
+    <table>
+        <tr><td width="120px"><span id="spaninput">Fahrenheit </span></td>
+            <td><input type="number" id="inputTemp" placeholder="enter temp" oninput="convertAndShow(this.value)"></td>
+        </tr>
+        <tr><td><span id="spanout">Celcius</span></td>
+            <td><span id="output"></span></td>
+        </tr>
+    </table>
+</fieldset>
+
 <script>
-    function converAndShow() {
-        let inputF = document.getElementById('inputTempF').value;
-        let outputC = (inputF - 32) / 1.8;
-        document.getElementById('result').innerHTML = outputC
+    function tempChanged(){
+        let value = document.getElementById('inputTemp').value;
+        let spanIn = document.getElementById('spaninput');
+        let spanOut = document.getElementById('spanout');
+        let typeTemp = document.getElementById('selectTemp').value;
+        if (typeTemp === 'F'){
+            spanIn.innerHTML = "Fahrenheit";
+            spanOut.innerHTML = "Celcius";
+            let inputT = parseFloat(value);
+            let outputTemp = (inputT - 32) / 1.8;
+            document.getElementById('output').innerHTML = outputTemp;
+        }
+        else if (typeTemp === 'C'){
+            spanIn.innerHTML = "Celcius";
+            spanOut.innerHTML = "Fahrenheit";
+            let inputT = parseFloat(value);
+            let outputTemp = inputT * 1.8 + 32;
+            document.getElementById('output').innerHTML = outputTemp;
+        }
+    }
+
+    function convertAndShow(value) {
+        let typeTemp = document.getElementById('selectTemp').value;
+            if (typeTemp === 'F'){
+                let inputT = parseFloat(value);
+                let outputTemp = (inputT - 32) / 1.8;
+                document.getElementById('output').innerHTML = outputTemp;
+            } else if (typeTemp === 'C'){
+                let inputT = parseFloat(value);
+                let outputTemp = inputT * 1.8 + 32;
+                document.getElementById('output').innerHTML = outputTemp;
+            }
     }
 
 </script>
